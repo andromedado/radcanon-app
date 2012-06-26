@@ -3,7 +3,7 @@ if (!defined('DS')) define('DS', DIRECTORY_SEPARATOR);
 if (!defined('RADCANON_DIR')) define('RADCANON_DIR', __DIR__ . DS);
 if (!defined('MAIL_FROM')) define('MAIL_FROM', 'Info <info@radcanon.com>');
 if (!class_exists('Twig_Autoloader')) {
-	if (!defined('TWIG_LIB_DIR')) define('TWIG_LIB_DIR', RADCANON_DIR . 'twig' . DS);
+	if (!defined('TWIG_LIB_DIR')) define('TWIG_LIB_DIR', dirname(__DIR__) . 'twig' . DS . 'lib' . DS . 'Twig' . DS);
 	require_once(TWIG_LIB_DIR . 'Autoloader.php');
 	Twig_Autoloader::register();
 }

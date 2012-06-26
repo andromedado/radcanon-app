@@ -18,12 +18,16 @@ abstract class DBCFactory {
 	/** @var PDO $ReadPDOConnection */
 	private static $ReadPDOConnection;
 	
-	private static $WriteDBC = array(
-		'db' => 'trekkers_db',
-		'usr' => 'trekkers_user',
-		'pwd' => 'trax_f9w8_GUYFuf76f&^',
-	);
+	private static $WriteDBC = array();
 	private static $ReadDBCs = array();
+	
+	public static function addReadInfo (array $info) {
+		self::$ReadDBCs[] = $info;
+	}
+	
+	public static function setWriteInfo (array $info) {
+		self::$WriteDBC = $info;
+	}
 
 	public static function quote ($str) {
 		self::constructPDO(false);
