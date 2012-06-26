@@ -1,5 +1,5 @@
 <?php
-DBCFactor::setWriteInfo(array(
+DBCFactory::setWriteInfo(array(
 	'db' => 'db',
 	'usr' => '',
 	'pwd' => '',

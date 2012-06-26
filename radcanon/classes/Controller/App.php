@@ -62,7 +62,7 @@ abstract class ControllerApp {
 		$this->response->set('invocation', array(get_called_class(), $method, $arguments));
 		if (!method_exists($this, $method)) throw new ExceptionBase('Invoke called on with invalid combo: ' . $method);
 		$template = preg_replace('/^Controller/', '', get_class($this)) . DS . $method . '.html.twig';
-		if (file_exists(APP_TEMPLATES_DIR . $template)) {
+		if (file_exists(APP_TEMPLATES_DIR . $template) || file_exists(RADCANON_TEMPLATES_DIR . $template)) {
 			$this->response->template = $template;
 		} elseif (DEBUG) {
 			$this->response->template = 'RadCanon' . DS . 'missingTemplate.html.twig';

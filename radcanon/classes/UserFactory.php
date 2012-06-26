@@ -2,9 +2,9 @@
 
 abstract class UserFactory {
 	private static $Hierarchy = array(
-		'SuperAdmin',
-		'Admin',
-		'AuthUser',
+//		'SuperAdmin',
+//		'Admin',
+//		'AuthUser',
 		'User',
 	);
 	
