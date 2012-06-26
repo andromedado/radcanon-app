@@ -1,9 +1,4 @@
 <?php
-Controller::addPreFilters(array(
-	'FilterUser',
-));
-/*
-Controller::addPostFilters(array(
-));
-*/
+Controller::addPreFilters();
+Controller::addPostFilters();
 ?>

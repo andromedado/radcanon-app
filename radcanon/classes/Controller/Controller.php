@@ -14,13 +14,15 @@ class Controller {
 	private static $CustomHeaders = array();
 	private static $DebugText = array();
 	
-	public static function addPreFilters (array $filters) {
+	public static function addPreFilters () {
+		$filters = func_get_args();
 		foreach ($filters as $filter) {
 			self::$preFilters[] = $filter;
 		}
 	}
 	
-	public static function addPostFilters (array $filters) {
+	public static function addPostFilters () {
+		$filters = func_get_args();
 		foreach ($filters as $filter) {
 			self::$postFilters[] = $filter;
 		}
