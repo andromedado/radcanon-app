@@ -31,15 +31,19 @@ var App = (function ($) {
 			throw "Constructor only accepts 'Function' as parameter";
 		}
 		O = func($, app);
-		if (typeof O !== 'object' || !O.name) {
-			throw "Malformed function paramter; Must return an Object with a 'name' property";
+		if (!O || (!O.name && !O.moduleName)) {
+			throw "Malformed Module returned; Must return an Object with a 'moduleName' property";
 		}
+		O.moduleName = O.name || O.moduleName;
+		/*/
 		for (i in O) {
 			if (O.hasOwnProperty(i) && i !== 'name') this[i] = O[i];
 		}
 		Modules[O.name] = app[O.name] = this;
-		ModuleNames.push(O.name);
-		if (Modules[O.name].onReady) Modules[O.name].onReady();
+		/*/
+		Modules[O.moduleName] = app[O.moduleName] = O;
+		ModuleNames.push(O.moduleName);
+		if (Modules[O.moduleName].onReady) Modules[O.moduleName].onReady();
 	};
 	
 	/**
