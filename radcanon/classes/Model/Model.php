@@ -655,6 +655,15 @@ abstract class Model {
 		return array($sql, $args, $Class);
 	}
 	
+	public static function findOwner (Model $M) {
+		$idc = static::$IdCol;
+		return static::findOne(array(
+			'fields' => array(
+				$idc => $M->$idc,
+			),
+		));
+	}
+	
 	public static function findOneBelongingTo () {
 		$args = func_get_args();
 		$fields = array();
