@@ -161,6 +161,7 @@ abstract class Model {
 	 */
 	public function saveData (array $data) {
 		if ($this->isValid()) {
+			if (isset($data[$this->idCol])) unset($data[$this->idCol]);
 			return $this->updateVars($data);
 		}
 		return $this->createWithVars($data);

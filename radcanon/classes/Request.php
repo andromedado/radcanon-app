@@ -102,6 +102,11 @@ class Request {
 		return $this->abstractedGet($key, $this->post, $default);
 	}
 	
+	public function server($key = NULL, $default = NULL) {
+		if (is_null($key)) return $this->server;
+		return $this->abstractedGet($key, $this->server, $default);
+	}
+	
 	public function getIniPOST() {
 		return $this->iniPost;
 	}

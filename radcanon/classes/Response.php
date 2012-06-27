@@ -71,6 +71,14 @@ class Response {
 		
 	}
 	
+	public function forceSSL () {
+		if ($this->request->server('SERVER_PORT') !== '443') {
+			$this->redirectTo('https://' . SITE_HOST . $this->request->getIniURI());
+			$this->render();
+			exit;
+		}
+	}
+	
 	public function setException(Exception $e) {
 		$this->exception = $e;
 		$this->error = true;
