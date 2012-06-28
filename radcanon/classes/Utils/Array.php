@@ -6,6 +6,14 @@ abstract class UtilsArray {
 	protected static $CompareArguments = array();
 	protected static $CompareInvert = false;
 	
+	public static function checkEmptiness (array $tested, array $testWith) {
+		$empty = false;
+		foreach ($testWith as $key) {
+			$empty = $empty || empty($tested[$key]);
+		}
+		return $empty;
+	}
+	
 	protected static function compWith($a, $b) {
 		$aR = call_user_func_array(array($a, self::$CompareMethod), self::$CompareArguments);
 		$bR = call_user_func_array(array($b, self::$CompareMethod), self::$CompareArguments);

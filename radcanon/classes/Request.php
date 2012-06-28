@@ -19,6 +19,21 @@ class Request {
 		$this->iniCookie = $this->cookie = $_cookie;
 	}
 	
+	public function postFieldEmpty () {
+		$args = func_get_args();
+		return UtilsArray::checkEmptiness($this->post, $args);
+	}
+	
+	public function getFieldEmpty () {
+		$args = func_get_args();
+		return UtilsArray::checkEmptiness($this->get, $args);
+	}
+	
+	public function serverFieldEmpty () {
+		$args = func_get_args();
+		return UtilsArray::checkEmptiness($this->server, $args);
+	}
+	
 	public function __get($var) {
 		if (in_array($var, $this->Accessable)) return $this->$var;
 		return NULL;

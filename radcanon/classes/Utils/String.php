@@ -18,6 +18,28 @@ abstract class UtilsString {
 		return preg_replace('/[^A-Z\d' . ($allowPeriods ? '\.' : '') . '_-]+/i', $repWith, $str);
 	}
 
+	public static function toPercentage ($str) {
+		$chars = str_split($str);
+		if (empty($chars)) return 0;
+		$n = 0;
+		foreach ($chars as $char) {
+			$n += ord($char);
+		}
+		$wholePercentage = (self::whittle($n) - 1) / 8;
+		$uniquePercentage = (self::whittle(ord($chars[0])) - 1) / 8;
+		$tens = floor($wholePercentage * 9) * 10;
+		$ones = floor($uniquePercentage * 10);
+		return ($tens + $ones) / 100;
+	}
+	
+	private static function whittle ($num, $allowed = 1) {
+        $j = strval($num);
+        while (strlen($j) > $allowed) {
+			$j = array_sum(str_split($j));
+        }
+        return $j;
+	}
+	
 }
 
 ?>
