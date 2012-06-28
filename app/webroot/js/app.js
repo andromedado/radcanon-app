@@ -144,6 +144,56 @@ var App = (function ($) {
 	 * Top Level Utilities
 	 */
 	
+	app.parseInt = function (str){
+		if (!str) return 0;
+		return parseInt(String(str).replace(/[^\d\.-]/g, ''), 10) || 0;
+	};
+
+	app.parseFloat = function (str) {
+		if (!str) return 0;
+		return parseFloat(String(str).replace(/[^\d\.-]/g, '')) || 0;
+	}
+
+	app.notZero = function (fl) {
+		return (Math.floor(fl)<0 && fl + 0.001 < 0) || (Math.ceil(fl)>0 && fl - 0.001 > 0);
+	}
+	
+	app.addCommas = function (nStr) {
+		var x, x1, x2, rgx = /(\d+)(\d{3})/;
+		nStr = String(nStr);
+		x = nStr.split('.');
+		x1 = x[0];
+		x2 = x.length > 1 ? '.' + x[1] : '';
+		while (rgx.test(x1)) {
+			x1 = x1.replace(rgx, '$1' + ',' + '$2');
+		}
+		return x1 + x2;
+	};
+	
+	app.numberFormat = function (str) {
+		return app.addCommas(app.parseFloat(str).toFixed(0));
+	};
+	
+	app.cashFormat = function (str) {
+		var cash = app.parseFloat(str),
+			sign = cash + 0.01 > 0 ? '' : '-';
+		return sign + '$' + app.addCommas(Math.abs(cash).toFixed(2));
+	};
+	
+	app.bigCashFormat = function (str) {
+		var cash = app.parseFloat(str),
+			sign = cash + 0.01 > 0 ? '' : '-';
+		return sign + '$' + app.addCommas(Math.abs(cash).toFixed(0));
+	};
+
+	app.percentageFormat = function (str, precision) {
+		var perc, sign;
+		precision = Number(precision) || 1;
+		perc = app.parseFloat(str) || 0;
+		sign = perc + 0.01 > 0 ? '' : '-';
+		return sign + Math.abs((Math.round(perc * Math.pow(10, precision))) / Math.pow(10, precision)).toFixed(precision) + '%';
+	};
+	
 	/**
 	 * Wait-For-It
 	 * A specialized promise creator
