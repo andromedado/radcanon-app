@@ -35,12 +35,6 @@ var App = (function ($) {
 			throw "Malformed Module returned; Must return an Object with a 'moduleName' property";
 		}
 		O.moduleName = O.name || O.moduleName;
-		/*/
-		for (i in O) {
-			if (O.hasOwnProperty(i) && i !== 'name') this[i] = O[i];
-		}
-		Modules[O.name] = app[O.name] = this;
-		/*/
 		Modules[O.moduleName] = app[O.moduleName] = O;
 		ModuleNames.push(O.moduleName);
 		if (Modules[O.moduleName].onReady) Modules[O.moduleName].onReady();
