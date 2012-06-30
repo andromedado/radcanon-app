@@ -1,10 +1,35 @@
 <?php
-defined('PaZsCA8p') or exit;
 
-abstract class UtilsArray {
+class UtilsArray {
+	public $whenNotFound;
+	/** @var Array $base */
+	protected $base;
 	protected static $CompareMethod = '__toString';
 	protected static $CompareArguments = array();
 	protected static $CompareInvert = false;
+	
+	public function __construct (array $base, $whenNotFound = NULL) {
+		$this->base = $base;
+		$this->whenNotFound = $whenNotFound;
+	}
+	
+	public function get ($key, $otherwise = NULL) {
+		if (array_key_exists($key, $this->base)) return $this->base[$key];
+		if (!is_null($otherwise)) return $otherwise;
+		return $this->whenNotFound;
+	}
+	
+	public function __get($key) {
+		if (array_key_exists($key, $this->base)) return $this->base[$key];
+		return $this->whenNotFound;
+	}
+	
+	public static function ifKeyAddToThis($key, array $tested, array &$recip, $newKey = NULL) {
+		if (array_key_exists($key, $tested)) {
+			if (is_null($newKey)) $newKey = $key;
+			$recip[$newKey] = $tested[$key];
+		}
+	}
 	
 	public static function checkEmptiness (array $tested, array $testWith) {
 		$empty = false;
