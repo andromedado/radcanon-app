@@ -1,5 +1,4 @@
 <?php
-defined('PaZsCA8p') or exit;
 
 class ModelLog extends Model {
 	protected $log_id;
@@ -29,6 +28,9 @@ class ModelLog extends Model {
 	
 	public static function mkLog ($content, $category = 'misc', $criticality = '0', $file = '', $line = 0) {
 		$O = new self(0);
+		if (is_array($content) || is_object($content)) {
+			$content = json_encode($content);
+		}
 		$O->createWithVars(array(
 			'content' => $content,
 			'category' => $category,
@@ -58,7 +60,7 @@ CREATE TABLE `logs` (
   `log_id` int(11) unsigned NOT NULL auto_increment,
   `category` varchar(20) NOT NULL default '',
   `criticality` enum('0','1','2') NOT NULL default '0',
-  `addressed` enum('0','1') NOT NULL default '0',
+  `addressed` enum('0','1') NULL default NULL,
   `file` varchar(120) NOT NULL,
   `content` text NOT NULL,
   `when` timestamp NOT NULL default '0000-00-00 00:00:00' on update CURRENT_TIMESTAMP,
