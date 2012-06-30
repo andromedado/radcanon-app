@@ -1,12 +1,8 @@
 <?php
 
-class AuthNetXMLResponse extends AuthNet {
+class AuthNetXMLResponse extends AuthNetResponse {
 	/** @var SimpleXMLElement $XML */
 	public $XML;
-	/** @var Boolean $isGood */
-	public $isGood;
-	public $code;
-	public $text;
 	
 	public function __construct (SimpleXMLElement $xml) {
 		$this->XML = $xml;

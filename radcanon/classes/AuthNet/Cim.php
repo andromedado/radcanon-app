@@ -25,26 +25,8 @@ class AuthNetCim extends AuthNet {
 		return $this->id > 0;
 	}
 	
-	protected function genPublicError ($code) {
-		switch ($code) {
-			case "E00039":
-				$msg = 'Information Submitted is a duplicate of an existing record';
-			break;
-			case "E00003":
-			case "E00013":
-			case "E00015":
-			case "E00016":
-				$msg = "Invalid Information Provided [{$code}]";
-			break;
-			case "E00041":
-			case "E00014":
-				$msg = 'Required Field Missing';
-			break;
-			case "E00001":
-			default:
-				$msg = "The system has experienced a problem [{$code}]. Please Try Again Later";
-		}
-		return $msg;
+	public function getPublicError ($code) {
+		return parent::getPublicError($code, 'cim');
 	}
 	
 }

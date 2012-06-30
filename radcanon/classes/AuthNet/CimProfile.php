@@ -17,7 +17,7 @@ class AuthNetCimProfile extends AuthNetCim {
 		$info = array('profile' => array('merchantCustomerId' => $this->formatId($id)));
 		$R = $this->getAuthNetXMLRequest()->getAuthNetXMLResponse('createCustomerProfileRequest', $info);
 		if (!$R->isGood) {
-			throw new ExceptionAuthNet($this->genPublicError($R->code));
+			throw new ExceptionAuthNet($this->getPublicError($R->code));
 		}
 		return strval($R->XML->customerProfileId);
 	}

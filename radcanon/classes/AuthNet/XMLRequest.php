@@ -8,6 +8,9 @@
  * @version 1.1
  */
 class AuthNetXMLRequest extends AuthNet {
+	protected $MultiInstancesPermissible = array(
+		'lineItems',
+	);
 	
 	public function __construct ($login_id = NULL, $transaction_key = NULL) {
 		$this->login_id = is_null($login_id) ? AuthNet::$default_login_id : $login_id;
@@ -83,7 +86,7 @@ class AuthNetXMLRequest extends AuthNet {
 		$info = array_merge(array('merchantAuthentication' => array('name' => $this->login_id, 'transactionKey' => $this->transaction_key)), $info);
 		$xml = '<?xml version="1.0" encoding="utf-8"?>' . "\n";
 		$xml .= '<' . $type . ' xmlns="AnetApi/xml/v1/schema/AnetApiSchema.xsd">' . "\n";
-		$xml .= $this->xmlIfiy($info);
+		$xml .= $this->xmlIfiy($info, $type);
 		$xml .= "\n" . '</' . $type . '>';
 		return $xml;
 	}
@@ -93,15 +96,25 @@ class AuthNetXMLRequest extends AuthNet {
 	 * Calls itself, so sometimes input isn't an array
 	 * 
 	 * @param array|string $info Array or String
+	 * @param String $parentNode
 	 * @return string XML
 	 */
-	protected function xmlIfiy($info) {
+	protected function xmlIfiy($info, $parentNode, $ignoreParent = false) {
 		$xml = '';
 		if (is_array($info) || is_object($info)) {
 			foreach ($info as $key => $val) {
-				$xml .= '<' . $key . '>';
-				$xml .= $this->xmlIfiy($val);
-				$xml .= '</' . $key . '>';
+				$ign = false;
+				$pre = '<' . $key . '>';
+				$post = '</' . $key . '>';
+				if (!$ignoreParent && in_array($parentNode, $this->MultiInstancesPermissible) && is_numeric($key)) {
+					$key = $parentNode;
+					$ign = true;
+				} elseif (in_array($key, $this->MultiInstancesPermissible) && is_array($val) && is_array(current($val))) {
+					$pre = $post = '';
+				}
+				$xml .= $pre;
+				$xml .= $this->xmlIfiy($val, $key, $ign);
+				$xml .= $post;
 			}
 		} else {
 			$xml .= $info;
