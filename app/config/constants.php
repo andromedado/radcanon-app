@@ -13,6 +13,7 @@ if (empty($_SERVER['HTTP_HOST'])) $_SERVER['HTTP_HOST'] = DEFAULT_SITE_HOST;
 define('SITE_HOST', $_SERVER['HTTP_HOST']);
 if (empty($_SERVER['REQUEST_URI'])) $_SERVER['REQUEST_URI'] = '/';
 define('APP_DIR', dirname(__DIR__) . DS);
+define('LIB_DIR', dirname(APP_DIR) . DS . 'lib' . DS);
 define('APP_CLASS_DIR', APP_DIR . 'classes' . DS);
 define('CACHE_DIR', APP_DIR . 'cache' . DS);
 define('TEMPLATE_CACHE_DIR', CACHE_DIR . 'templates');
