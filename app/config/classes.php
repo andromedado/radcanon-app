@@ -22,6 +22,3 @@ function app_autoloader ($classname) {
 	return true;
 }
 spl_autoload_register('app_autoloader');
-
-
-?>

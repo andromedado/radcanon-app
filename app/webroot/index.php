@@ -6,4 +6,3 @@ if(!headers_sent() && OUTPUT_BUFFER){ob_start("ob_gzhandler");}
 $Response->render();
 if(!headers_sent() && OUTPUT_BUFFER){ob_end_flush();}
 exit;
-?>
