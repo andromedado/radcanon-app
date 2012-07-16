@@ -1,6 +1,6 @@
 [submodule "lib/radcanon"]
 	path = lib/radcanon
-	url = git://github.com/andromedado/radcanon.git
+	url = git@github.com:andromedado/radcanon.git
 [submodule "lib/twig"]
 	path = lib/twig
 	url = git://github.com/fabpot/Twig.git
