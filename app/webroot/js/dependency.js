@@ -1,6 +1,6 @@
 
 new App.Module(function ($) {
-	var Module = {name : 'Dependency'};
+	var Module = {name : 'dependency'};
 	
 	$.fn.mkReq = function () {
 		return this.each(function () {

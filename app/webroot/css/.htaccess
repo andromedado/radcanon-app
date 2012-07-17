@@ -1,7 +1,12 @@
-<IfModule mod_rewrite.c>
-    RewriteEngine On
-	RewriteRule styles.css suture.php [NC,QSA,L]
-</IfModule>
-<FilesMatch "\.css$">
-	Header set Cache-Control "public"
+<FilesMatch "\.(css|php)$">
+	Header set Cache-Control "max-age=5"
 </FilesMatch>
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /css/
+	
+	RewriteRule styles.css suture.php [NC,QSA,L]
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.+)$ ../../../lib/radcanon/css/$1 [L]
+</IfModule>

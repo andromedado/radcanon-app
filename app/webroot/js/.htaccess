@@ -1,7 +1,12 @@
 <FilesMatch "\.(js|php)$">
 	Header set Cache-Control "max-age=5"
 </FilesMatch>
-
-RewriteEngine On
-RewriteBase /crras/js/
-RewriteRule script.js suture.php [NC,QSA,L]
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	RewriteBase /js/
+	
+	RewriteRule script.js suture.php [NC,QSA,L]
+	
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.+)$ ../../../lib/radcanon/js/$1 [L]
+</IfModule>
