@@ -6,6 +6,7 @@ try {
 	$Response->render();
 	if(!headers_sent() && OUTPUT_BUFFER){ob_end_flush();}
 } catch (Exception $e) {
+	if (DEBUG) vdump($e);
 	header($_SERVER['SERVER_PROTOCOL'] . ' 500 Internal Server Error', true, 500);
 ?><!DOCTYPE html>
 <html>
