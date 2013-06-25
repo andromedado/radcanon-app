@@ -1,6 +1,6 @@
-##RADCanon App
+#RADCanon App
 
-#This is a default/base skeleton for a RAD-Canon Application
+##This is a default/base skeleton for a RAD-Canon Application
 
 If the app requires a mysql database connection, you'll want to ensure that there are the appropriate `SetEnv` directives
 in your virtual host.
