@@ -11,3 +11,6 @@ e.g.
     SetEnv MYSQL_DB_NAME exampleDbName
     SetEnv MYSQL_USERNAME exampleDbUserName
     SetEnv MYSQL_PASSWORD exampleDbPassword
+
+_In the event you are not able to alter your virutal host, you can instead `putenv` the above properties in your
+`app/config/env.php` file_

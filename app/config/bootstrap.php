@@ -1,6 +1,7 @@
 <?php
 require_once(__DIR__ . DIRECTORY_SEPARATOR . 'constants.php');
 require_once(CONFIG_DIR . 'inis.php');
+require_once(CONFIG_DIR . 'env.php');
 require_once(CONFIG_DIR . 'functions.php');
 require_once(CONFIG_DIR . 'classes.php');
 require_once(RADCANON_DIR . 'load.php');
