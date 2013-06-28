@@ -34,6 +34,8 @@ define('TEMPLATE_CACHE_DIR', CACHE_DIR . 'templates');
 define('APP_TEMPLATES_DIR', APP_DIR . 'views' . DS);
 define('SERVER_PREFIX', APP_DIR . 'webroot');//No Trailing Slash
 define('WEBROOT_DIR', SERVER_PREFIX . DS);
+define('CSS_DIR', WEBROOT_DIR . 'css' . DS);
+define('JS_DIR', WEBROOT_DIR . 'js' . DS);
 define('UPDIR_ROOT', WEBROOT_DIR . 'uploads' . DS);//With Trailing Slash
 define('IMAGE_NOT_FOUND_FILE', WEBROOT_DIR . 'images' . DS . 'notFound.jpg');
 define('IMAGE_NOT_FOUND_TYPE', 'image/jpeg');
